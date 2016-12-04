@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String generator</title>
+	<style type="text/css">
+		body {
+			font-family: "Arial", sans-serif;
+			font-size: 13px;
+		}
+
+		.main {
+			margin: auto;
+			padding: 10px;
+			width: 50%;
+			text-align: center;
+		}
+
+		.marg-top {
+			margin-bottom: 15px;
+			margin-top: 5px;
+		}
+		#result {
+			max-width: 400px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main">
+		<span class="marg-top">Enter a number</span><br>
+		<input type="text" name="50" id="start-point" class="marg-top"><br>
+		<span class="marg-top">Enter the end point</span><br>
+		<input type="text" name="50" id="end-point"><br>
+		<button type="button" id="button-generator" class="marg-top">Generate string</button><br>
+		<textarea readonly rows="25" cols="70" id="result" class="marg-top"></textarea>
+	</div>
+	<script type="text/javascript">
+
+		var button = document.getElementById("button-generator");
+
+		button.addEventListener('click', insertString);
+		
+
+		function getString(argument) {
+
+			var inputValue = parseInt(document.getElementById('start-point').value),
+				endValue = parseInt(document.getElementById('end-point').value),
+				stringResult = "";
+
+			for(var i = 0; i <= endValue ; i++){
+				if(i != 0){
+					inputValue ++;
+					stringResult +=  "," + inputValue;
+				}else{
+					stringResult += inputValue;
+				};
+			};
+	
+			return stringResult;
+		}		
+
+		function insertString() {
+			var resultBlock = document.getElementById('result'),
+				stringToInsert = getString();
+			resultBlock.insertAdjacentHTML('afterbegin', stringToInsert);
+		}
+	</script>
+</body>
+</html>
