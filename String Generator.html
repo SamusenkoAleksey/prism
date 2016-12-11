@@ -27,9 +27,9 @@
 </head>
 <body>
 	<div class="main">
-		<span class="marg-top">Enter a number</span><br>
+		<span class="marg-top">Enter the ID of the first site</span><br>
 		<input type="text" name="50" id="start-point" class="marg-top"><br>
-		<span class="marg-top">Enter the end point</span><br>
+		<span class="marg-top">Quantity of sites in the current batch</span><br>
 		<input type="text" name="50" id="end-point"><br>
 		<button type="button" id="button-generator" class="marg-top">Generate string</button><br>
 		<textarea readonly rows="25" cols="70" id="result" class="marg-top"></textarea>
@@ -47,7 +47,7 @@
 				endValue = parseInt(document.getElementById('end-point').value),
 				stringResult = "";
 
-			for(var i = 0; i <= endValue ; i++){
+			for(var i = 0; i < endValue ; i++){
 				if(i != 0){
 					inputValue ++;
 					stringResult +=  "," + inputValue;
