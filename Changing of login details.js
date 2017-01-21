@@ -1,9 +1,9 @@
-
-    var changeLoginButton = "<input type=\"button\" value=\"Change\" id=\"change\" >",
-        returnButton = "<input type=\"button\" value=\"Return\" id=\"return\" >",
-        inputField = "<input type=\"text\" value=\"root\" id=\"inputValue\" >",
+var changeLoginButton = "<input type=\"button\" value=\"Change\" id=\"change\" class=\"test\">",
+        returnButton = "<input type=\"button\" value=\"Defualt Value\" id=\"return\" class=\"test\">",
+        inputField = "<input type=\"text\" value=\"root\" id=\"inputValue\" class=\"test\">",
         formBlock = document.querySelector("form"),
-        divBlock = "<div id=\"insertedBlock\"></div>";
+        divBlock = "<div id=\"insertedBlock\"></div>",
+        header = "</br><label class=\"primary\">Auto Change of Tunnel Details</label></br>";
 
 //Creating a button
 
@@ -11,14 +11,21 @@
 
     var divBlocHtml = document.getElementById('insertedBlock');
 
-    divBlocHtml.insertAdjacentHTML('beforeend', changeLoginButton);
-    divBlocHtml.insertAdjacentHTML('beforeend', inputField);
+    divBlocHtml.insertAdjacentHTML('afterbegin', header);
     divBlocHtml.insertAdjacentHTML('beforeend', returnButton);
+    divBlocHtml.insertAdjacentHTML('beforeend', inputField);
+    divBlocHtml.insertAdjacentHTML('beforeend', changeLoginButton);
 
-//Changing CSS property
+//A listtle bit of CSS...
     
-    var inputFieldHtml = document.getElementById("inputValue");
-    inputFieldHtml.style.font_size = "";
+    var inputFieldHtml = document.getElementById("inputValue"),
+		headerElement = document.querySelector('label.primary');
+    console.log(headerElement);
+    inputFieldHtml.style.fontSize = "0.7em";
+    inputFieldHtml.style.width = "10em";
+    inputFieldHtml.style.margin = "0px 15px";
+    headerElement.style.margin = "300px 0px";
+    
 
 //Creating event
     
@@ -45,19 +52,19 @@
             loginDetails = login;
 
        
-        
+     	
         for(var i = 0, arrLength = tunnelDetails.length ; i < arrLength ; i++ ){
 
             var currentTunnelDetails = tunnelDetails[i].innerText;
-                // current Tunnel Details in iDashboard
-                if(currentTunnelDetails.slice(0, 3) == "ssh"){
-                    var firstPart = currentTunnelDetails.substr(0, currentTunnelDetails.indexOf("l") + 1),
-                    lastPart = currentTunnelDetails.substr(currentTunnelDetails.lastIndexOf("-"), currentTunnelDetails.length),
-                    finalTunnelDetails = firstPart + " " + loginDetails + " " + lastPart;
-                    //setting "root" as as login
-                    tunnelDetails[i].innerText = finalTunnelDetails;
+            	// current Tunnel Details in iDashboard
+            	if(currentTunnelDetails.slice(0, 3) == "ssh"){
+            		var firstPart = currentTunnelDetails.substr(0, currentTunnelDetails.indexOf("l") + 1),
+                	lastPart = currentTunnelDetails.substr(currentTunnelDetails.lastIndexOf("-"), currentTunnelDetails.length),
+                	finalTunnelDetails = firstPart + " " + loginDetails + " " + lastPart;
+                	//setting "root" as as login
+                	tunnelDetails[i].innerText = finalTunnelDetails;
 
-                };       
+            	};       
 
         };
     };
